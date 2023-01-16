@@ -1,0 +1,9 @@
+<ul>
+  <button routerLink="/detail" type="button">Add Name</button>
+  <p>Names:</p>
+  <li *ngFor="let name of names">
+    <a [routerLink]="['/detail', { name: name }]">
+      {{ name }}
+    </a>
+  </li>
+</ul>

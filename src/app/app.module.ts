@@ -3,16 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListComponent } from './list/list.component';
+import { FormComponent } from './form/form.component';
+import { FormsModule } from '@angular/forms';
+import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuse } from 'src/route-reuse';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{provide: RouteReuseStrategy , useClass: RouteReuse}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
