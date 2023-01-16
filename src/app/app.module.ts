@@ -7,7 +7,7 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
 import { RouteReuseStrategy } from '@angular/router';
-import { RouteReuse } from 'src/route-reuse';
+import { RouteReuse } from '../route-reuse';
 
 @NgModule({
   declarations: [
