@@ -2,7 +2,11 @@ import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { EntityService } from '../entity.service';
 import { tap } from 'rxjs/operators';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Router,
+} from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -10,17 +14,14 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router'
   styleUrls: ['./form.component.sass'],
 })
 export class FormComponent implements AfterViewInit, OnInit {
-  entityService: EntityService;
-  activatedRouteSnapshot: ActivatedRouteSnapshot;
-  router: Router;
-  constructor(entityService: EntityService, activatedRouteSnapshot: ActivatedRoute, router: Router) {
-    this.entityService = entityService;
-    this.activatedRouteSnapshot = activatedRouteSnapshot.snapshot;
-    this.router = router;
-  }
+  constructor(
+    private entityService: EntityService,
+    private activatedRouteSnapshot: ActivatedRoute,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-    if(this.activatedRouteSnapshot.params)
-    this.name = this.activatedRouteSnapshot.params['name'];
+    if (this.activatedRouteSnapshot.snapshot.params)
+      this.name = this.activatedRouteSnapshot.snapshot.params['name'];
   }
 
   @ViewChild(NgForm) form: FormGroup | null = null;
@@ -28,7 +29,9 @@ export class FormComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     if (this.form)
-      this.form.valueChanges?.pipe(tap((data) => console.log(data))).subscribe();
+      this.form.valueChanges
+        ?.pipe(tap((data) => console.log(data)))
+        .subscribe();
   }
 
   save() {
